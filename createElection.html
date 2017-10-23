@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Voting System</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+<body>
+			
+		<nav class="navbar navbar-inverse bg-inverse">
+		  	<div class="container">
+		  		<a class="navbar-brand" href="index.html">
+			    Online Voting System | Create Election
+			  	</a>
+			  
+			  	<a class="navbar-brand" id="user-profile" href="#">Admin</a>
+			  	<a href="index.html" class="navbar-brand" id="user-profile"> Logout</a>
+		
+		  	</div>
+		</nav>
+
+		<div class="container">
+
+			<div class="row">
+				<div class="col-6 touchdown">
+					  <div class="form-group">
+						    <label for="electionName">Election Name</label>
+						    <input type="name" name="electionName" placeholder="Election Name" class="form-control">
+					  </div>
+					
+					<div class="form-group">
+						<label for="electionDate">Election Start and End Date</label>
+						<input type="date" placeholder=" Election Start Date" class="form-control">
+						<input type="date" placeholder="Election End Date" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="electionCandDate">Candidate Registration Start and End Date</label>
+						<input type="date" placeholder=" Candidate Registration Start Date" class="form-control">
+						<input type="date" placeholder="Candidate Registration End Date" class="form-control">
+					</div>
+					
+				
+					  <div class="form-group">
+					    <label for="electionRules">Election Rules</label>
+					    <textarea class="form-control" id="" rows="5"></textarea>
+					  </div>
+
+					  <div class="form-group">
+					  	<label for="candidates"> Enter Candidates for Election</label>
+					    <input type="text" name="cand" placeholder="Candidate" class="form-control">
+					    <button class="btn btn-success">Add another</button>
+					  </div>
+
+					  <div class="row">
+					  		<div class="col-3 touchdown"> 
+					  		<button class="btn btn-primary" onclick="alert('Election was sucessfully created.'); window.location.href='adminlogin.html'">Create Election</button></div>
+					  	
+					  </div>
+				</div>
+				</div>
+			</div>
+
+</body>
+				
