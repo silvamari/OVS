@@ -1,7 +1,8 @@
 # OVS
 Online Voting System
 
-Check the Wiki for additional information
+# Wiki
+Check the Wiki for additional information https://github.com/silvamari/OVS/wiki
 
 
 Installation
