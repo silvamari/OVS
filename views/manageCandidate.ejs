@@ -1,0 +1,37 @@
+<% include ./partials/adminHead %>
+<% include ./partials/adminUserMenus %>
+<div class="container bodyContainer">
+    <div class="row">
+      <div class="col-4 touchdown">
+        <a href="/createCandidate"><button class="btn btn-success">Create Candidate</button></a>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-5 touchdown">
+      <input type="search" name="searchVoter" placeholder="Searh for Candidate" class="form-control">
+      </div>
+      <div class="col-3 touchdown">
+        <button class="btn btn-success">Search</button>
+        <button class="btn btn-primary">Advanced Search</button>
+      </div>
+    </div>
+    <div class="row">
+          <div class="col-6 touchdown">
+              <div class="voters">
+                <h3>Dr. Paul Websley</h3>
+              <div>
+                <span>Details about candidate</span>
+                <button class="btn btn-primary">Delete</button>
+                <button class="btn btn-primary">Update</button>
+
+              </div>
+          </div>
+
+
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
+</body>

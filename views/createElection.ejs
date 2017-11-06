@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+   <% include ./partials/head %>
+<body>
+
+		<nav class="navbar navbar-inverse bg-inverse">
+		  	<div class="container">
+		  		<a class="navbar-brand" href="/">
+			    Online Voting System | Create Election
+			  	</a>
+			  	<a class="navbar-brand" id="user-profile" href="#">Admin</a>
+			  	<a href="index.html" class="navbar-brand" id="user-profile"> Logout</a>
+
+		  	</div>
+		</nav>
+
+		<div class="bodyContainer container">
+			<div class="row">
+				<div class="col-6 touchdown">
+          <form method="POST" action="/createElection">
+					  <div class="form-group">
+						    <label for="electionName">Election Name</label>
+						    <input type="text" name="electionName" placeholder="Election Name" class="form-control" required>
+					  </div>
+
+					<div class="form-group">
+            <div class="row">
+              <div class="col-6"
+    						<label for="electionDate">Election Start and End Date</label>
+    						<input type="date" name="electionSDate" placeholder=" Election Date" class="form-control" required>
+                <input type="date" name="electionEDate" placeholder=" Election Date" class="form-control" required>
+    					</div>
+            </div>
+        </div>
+          <div class="form-group">
+             <label for="electionType">Election Type</label>
+             <select class="form-control" name="electionType" required id="electionType">
+               <option>Parlimentary</option>
+               <option>Student Union</option>
+               <option>Sports Club</option>
+             </select>
+         </div>
+         <div class="form-group">
+             <label for="electionRounds">How many rounds?</label>
+             <input type="number" name="electionRounds" value="1" class="form-control" required>
+         </div>
+
+					  <div class="form-group">
+					    <label for="electionRules">Election Rules</label>
+					    <textarea class="form-control" name="electionRules" id="" rows="5"></textarea>
+					  </div>
+            <!-- Candidates section-->
+					  <div class="form-group candidate">
+					  	<label for="candidates"> Enter Candidates for Election</label>
+					    <input type="text" id="candidateName" placeholder="Candidate Name" class="form-control"><br/>
+              <select class="form-control" id="candidateType">
+                <option>Independent</option>
+                <option>Party</option>
+              </select>
+              <br/>
+              <div id="showParty">
+              <label for="whichParty"> Which Party?</label>
+              <input type="text" placeholder="Party name"  class="form-control">
+              </div>
+              <script type="text/javascript">
+              $(function() {
+                    $('#candidateType').change(function(){
+                        if($('#candidateType').val() == 'Party') {
+                            $('#showParty').css("display","block");
+                        } else {
+                            $('#showParty').css("display","none");
+                        }
+                    });
+                });
+              </script>
+              <br/>
+					    <button class="btn btn-success" id="addCandidate">Add Candidate</button>
+					  </div>
+            <div>
+              <b><label> Current Candidates for this Election</label></b>
+              <ul id="curr_Candidates">
+              </ul>
+            </div>
+            <script type="text/javascript">
+            ///add Candidates to current election temporarily
+              $(function() {
+                  $("#addCandidate").click(function () {
+                      var add = $('#candidateName').val();
+                      $('#curr_Candidates').append('<li class="list-item">' + add + ' <button class="btn btn-danger">Remove</button></li>');
+                  });
+
+
+                    $(document).on('click', '.list-item', function () {
+                        $(this).remove();
+                    });
+              });
+
+
+
+            </script>
+		  		 <input class="btn btn-primary" id="createElectionBtn" value="Create Election" type="submit">
+         </form>
+		       </div>
+      </div>
+	</div>
+      <% include ./partials/footer %>
+</body>
+</html>

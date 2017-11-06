@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <% include ./partials/head %>
+<body>
+
+		<nav class="navbar navbar-inverse bg-inverse">
+		  	<div class="container">
+		  		<a class="navbar-brand" href="/">
+			    Online Voting System | Vote
+			  	</a>
+
+			  	<a class="navbar-brand" id="user-profile" href="/">John Brown</a>
+			  	<a href="/" class="navbar-brand" id="user-profile"> Logout</a>
+
+		  	</div>
+		</nav>
+  <div class="container bodyContainer">
+    <div class="row">
+				<div class="col-6 touchdown">
+						<h2><%= election.electionName %></h2>
+            <p>Election Date
+              <%= election.electionSDate %>
+            </p>
+						<div id="vote-section">
+
+							  <fieldset class="form-group">
+								    <legend>Candidates</legend>
+								    <div class="form-check">
+								      <label class="form-check-label">
+								        <input type="radio" class="form-check-input" name="voteChoice" id="optionsRadios1" value="Demarey Baker" checked>
+								        Demarey Baker
+								      </label>
+								    </div>
+								    <div class="form-check">
+								    <label class="form-check-label">
+								        <input type="radio" class="form-check-input" name="voteChoice" id="optionsRadios2" value="John Adam">
+								        John Adam
+								      </label>
+								    </div>
+								    <div class="form-check">
+								    <label class="form-check-label">
+								        <input type="radio" class="form-check-input" name="voteChoice" id="optionsRadios3" value="Van Persie">
+								        Van Persie
+								      </label>
+								    </div>
+								    <button class="btn btn-success" id="vote" >Vote</button>
+								   </fieldset>
+
+                   <script type="text/javascript">
+                       $(function()
+                       {
+                          $("#vote").click(function(){
+                            alert("You have succesfully voted for " + $("input[name='voteChoice']:checked").val());
+                            window.location.href="/userlogin";
+                          });
+                       });
+                   </script>
+						</div>
+				</div>
+			</div>
+
+
+  </div>
+<% include ./partials/footer %>
+</body

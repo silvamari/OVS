@@ -1,0 +1,41 @@
+<% include ./partials/adminHead %>
+<% include ./partials/adminUserMenus %>
+<div class="container bodyContainer">
+      <div class="row">
+      <div class="col-4 touchdown">
+        <a href="registerVoter.html"><button class="btn btn-success">Create Voter</button></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5 touchdown">
+      <input type="search" name="searchVoter" placeholder="Searh for Voter" class="form-control">
+      </div>
+      <div class="col-3 touchdown">
+        <button class="btn btn-success">Search</button>
+        <button class="btn btn-primary">Advanced Search</button>
+      </div>
+    </div>
+    <div class="row">
+          <div class="col-6 touchdown">
+              <% for(var i=0; i< voters.length; i++) {%>
+              <div class="voters">
+                <h3>Name <%= voters[i].firstName +' '+ voters[i].lastName  %> </h3>
+                <div>
+                  <span>District No: <%= voters[i].district  %></span><br/>
+                  <span>Address <%= voters[i].address  %></span>
+                  <button class="btn btn-primary">Delete</button>
+                  <button class="btn btn-primary">Update</button>
+
+                </div>
+              </div>
+               <% } %>
+
+
+          </div>
+
+
+        </div>
+    </div>
+  </div>
+  <% include ./partials/footer %>
+  </body>
