@@ -2,7 +2,7 @@
 Online Voting System
 
 # Wiki
-Check the Wiki for additional information https://github.com/silvamari/OVS/wiki
+Check the Wiki for additional information regarding iteration 1 https://github.com/silvamari/OVS/wiki
 
 
 Installation
