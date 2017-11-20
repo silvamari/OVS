@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+    <div class="container bodyContainer">
+      <div class="col-6 touchdown">
+      <h2> Election Results </h2>
+
+    <% for(var i=0; i< elections.length; i++) {%>
+          <div class="elections">
+            <h3> <%= elections[i].electionName  %> </h3>
+            <span>Election Type: <%= elections[i].electionType  %></span><br>
+            <span>Date : <%= elections[i].electionDate  %></span><br>
+            <div>
+
+              <a href="/users/results/<%= elections[i]._id %>" class="btn btn-primary">See results</a>
+
+            </div>
+          </div>
+      <% } %>
+    </div>
+  </div>
+      <% include ../partials/footer %>
+  </body>
+
+</html>

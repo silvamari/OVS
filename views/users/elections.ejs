@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+    <div class="container bodyContainer">
+      <div class="col-6 touchdown">
+      <h2> Ongoing elections </h2>
+
+
+    <% for(var i=0; i< elections.length; i++) {%>
+          <div class="elections">
+            <h3> <%= elections[i].electionName  %> </h3>
+            <span>Election Type: <%= elections[i].electionType  %></span><br>
+            <span>Date : <%= elections[i].electionDate  %></span><br>
+              <% if(elections[i].round>1) {%>
+                <span>Round : <%= elections[i].round  %></span>
+                <%}%>
+            <div>
+
+              <a href="/users/vote/<%= elections[i]._id %>" class="btn btn-primary">Vote in this election</a>
+
+            </div>
+          </div>
+      <% } %>
+    </div>
+  </div>
+      <% include ../partials/footer %>
+  </body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+
+  <body>
+    <% include ../partials/nav %>
+    <div class="bodyContainer container">
+      <% if (candidates.length>0) {%>
+        <form class="form" action="/users/vote/submitVote" method="post">
+        <div class="row">
+          <div class="col-10">
+            <div id="voting-section">
+
+
+              <label for=""> Who you want to vote for?</label>
+                    <ul>
+                          <% for(var i =0; i< candidates.length; i++) { %>
+                              <div class="radio form-control candidateBox">
+                                <label class="votingLabel"><input type="radio"  value="<%= candidates[i].id %>" name= "candidate" required/>
+
+                                  <%= candidates[i].name %></label>
+                                <div class="votingLabelParty">
+                                      <%=candidates[i].party %>
+                                </div>
+                              </div>
+                                <% } %>
+
+                    </ul>
+
+
+
+
+                  </div>
+                </div>
+              </div>
+              <input type="submit" name="vote" value="Submit Vote" class="btn btn-primary">
+              </form>
+
+                <%} else {%>
+                      <p>No Candidates yet!</p>
+                <%}%>
+
+
+  </body>
+    </div>
+  <% include ../partials/footer %>
+</html>

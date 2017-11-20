@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+    <div class="bodyContainer container">
+
+    <h3>Results </h3>
+        <div id="round-Box">
+          <%var totalVotes = 0;
+            for(var i =0; i < vote.candidates.length; i++){
+              totalVotes = totalVotes + vote.candidates[i].votes;
+            }
+            var percentage = (vote.candidates[0].votes/totalVotes) * 100;
+            var voteMinToRoundTwo = 50;
+          if(vote.round == 1 && vote.candidates.length > 2 && vote.candidates[0].vote < voteMinToRoundTwo) {%>
+            <label><%= vote.candidates[0].name + " and " +  vote.candidates[1].name + " won this round. "  %></label>
+            <a class="btn btn-primary"  id="finalRoundResult" >See Final Round Two Result</a>
+
+          <%} else { %>
+            <label><%= vote.candidates[0].name + " won the election. "  %></label>
+          <% } %>
+        </div>
+
+    <table class="table">
+          <tr>
+              <td>Candidate</td>
+              <td>Party</td>
+              <td>Votes</td>
+          </tr>
+
+            <% for(var j =0; j < vote.candidates.length; j++) {%>
+                <tr>
+                  <td><%= vote.candidates[j].name%></td>
+                  <td><%=vote.candidates[j].party%></td>
+                  <td><%=vote.candidates[j].votes %></td>
+                </tr>
+
+          <% }  %>
+      </table>
+
+
+
+      </div>
+      <% include ../partials/footer %>
+  </body>
+
+
+</html>
