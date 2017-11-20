@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+    <div class="bodyContainer container">
+
+    <h3>Results </h3>
+        <div id="round-Box">
+        <% if(vote.round == 2) { %>
+            <label><%= vote.candidates[0].name + " won the election. "  %></label>
+          <% } %>
+        </div>
+
+    <table class="table">
+          <tr>
+              <td>Candidate</td>
+              <td>Party</td>
+              <td>Votes</td>
+          </tr>
+
+            <% for(var j =0; j < vote.candidates.length; j++) {%>
+                <tr>
+                  <td><%= vote.candidates[j].name%></td>
+                  <td><%=vote.candidates[j].party%></td>
+                  <td><%=vote.candidates[j].votes %></td>
+                </tr>
+
+          <% }  %>
+      </table>
+
+
+      </div>
+      <% include ../partials/footer %>
+  </body>
+
+</html>

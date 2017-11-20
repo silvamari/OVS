@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+    <div class="container bodyContainer">
+          <div class="row">
+          <div class="col-4">
+            <a href="/users/registerVoter"><button class="btn btn-success">Create Voter</button></a>
+          </div>
+        </div>
+
+              <div class="touchdown">
+
+                    <table class="table">
+                          <tr>
+                              <td>Name</td>
+                              <td>District No.</td>
+                              <td>Address</td>
+                          </tr>
+                            <% for(var i=0; i< voters.length; i++) {%>
+                                <tr>
+                                  <td><%= voters[i].firstName +' '+ voters[i].lastName %></td>
+                                  <td><%= voters[i].district %></td>
+                                  <td><%= voters[i].address %></td>
+                                  <td><button class="btn btn-primary" id="editVoter">Edit</button></td>
+                                  <td><button class="btn btn-danger" id="deleteVoter">Delete</button></td>
+                                </tr>
+
+                          <% }  %>
+                      </table>
+
+
+              </div>
+
+        </div>
+  <% include ../partials/footer %>
+  </body>
+
+  </html>
