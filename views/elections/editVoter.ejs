@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+       <% include ../partials/head %>
+</head>
+
+<body>
+
+		<% include ../partials/adminHead %>
+
+		<div class="bodyContainer container">
+			<div class="row">
+				<div class="col-6 touchdown">
+          <form method="post" action="/elections/voters/edit/<%= voter._id %>">
+      							 <div class="form-group">
+  	 						    <label for="fName">First Name</label>
+  	 						    <input type="text" name="fName" placeholder="First Name"  value ="<%= voter.firstName %>" class="form-control" required>
+  	 					  </div>
+  					  <div class="form-group">
+  						    <label for="lName">Last Name</label>
+  						    <input type="text" name="lName" placeholder="Last Name" value ="<%= voter.lastName %>" class="form-control" required>
+  					  </div>
+  						<div class="form-group">
+  									 <label for="Email">Email Address </label>
+  									 <input type="email" placeholder="Email" name="email" value ="<%= voter.email %>" class="form-control" required>
+  						</div>
+  					<div class="form-group">
+  						<label for="DateOfBirth">Date of Birth</label>
+  						<input type="date" placeholder="Date of Birth" name="dob"  value ="<%= voter.dob %>" class="form-control" required>
+  					</div>
+  					<div class="form-group">
+                      <label for="district">District </label>
+                      <input type="text" placeholder="District" name="district" value ="<%= voter.district %>" class="form-control">
+            </div>
+  					  <div class="form-group">
+  					    <label for="address">Address</label>
+  					    <textarea class="form-control" rows="5" name="address"><%= voter.address %></textarea>
+  					  </div>
+
+  		  					  <div class="row">
+  					  		<div class="col-4">
+  					  		<input class="btn btn-primary form-control" type="submit" value="Save Changes"/>
+  							</div>
+
+  					  </div>
+
+         </form>
+		      </div>
+      </div>
+	</div>
+      <% include ../partials/footer %>
+</body>
+</html>

@@ -15,6 +15,31 @@ candidateController.create = (req, res)=>{
   res.render('../views/candidates/createCandidate');
 }
 
+candidateController.edit = (req, res) =>{
+    var cand =req.params.id;
+    Candidate.findOne({_id:cand},(err,result) =>{
+        if (err) console.log(err);
+          res.render('../views/candidates/editCandidate', {candidate:result});
+    });
+}
+candidateController.update = (req,res)=>{
+  //find Camdidate and updates to values set by users
+    Candidate.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, address: req.body.address, party :req.body.party, type :req.body.candidateType  }},
+    (err) =>{
+      if(err) console.log(err);
+      console.log('Canidate Updated');
+      res.redirect('/candidates');
+    });
+}
+
+candidateController.delete =(req, res) =>{
+  Candidate.findByIdAndRemove(req.body.candidate,(err) =>{
+    if(err) console.log(err);
+    console.log('Canidate deleted');
+    res.json({success : "Deleted Successfully", status : 200});
+  });
+}
+
 
 candidateController.save = (req, res) =>{
     var cand = new Candidate();

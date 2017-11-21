@@ -24,14 +24,14 @@
                 <td><%= candidates[i].name%></td>
                 <td><%= candidates[i].address%></td>
                 <td><%= candidates[i].party%></td>
-                <td><button class="btn btn-primary" id="editVoter">Edit</button></td>
-                <td><button class="btn btn-danger" id="deleteVoter">Delete</button></td>
+                <td><a class="btn btn-primary" href="/candidates/edit/<%= candidates[i].id%>">Edit</a></td>
+                <td><button class="btn btn-danger deleteCandidate"  value="<%= candidates[i].id%>">Delete</button></td>
             </tr>
               <% } %>
 
           </tbody>
         </table>
     </div>
-  <% include ../partials/head %>
+  <% include ../partials/footer %>
   </body>
 </html>

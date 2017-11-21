@@ -57,4 +57,35 @@ $(document).ready(function(){
       });
 
 
+      $(".deleteCandidate").click(function(){
+        if(confirm('Are you sure?')){
+          var cand = ($(this).attr("value"));
+         $.ajax({
+                  type: "POST",
+                    url: $(this).data("url"),
+                   dataType:"json",
+                    data: { candidate: cand},
+                    success:function() {
+                        window.location.href='/candidates';
+                    }
+                  });
+            }
+       });
+
+       $(".deleteVoter").click(function(){
+          if(confirm('Are you sure?')){
+             var tempVoter = ($(this).attr("value"));
+            $.ajax({
+                     type: "POST",
+                       url: $(this).data("url"),
+                      dataType:"json",
+                       data: { voter: tempVoter},
+                       success:function() {
+                           window.location.href='/elections/voters';
+                       }
+                     });
+          }
+        });
+
+
 });

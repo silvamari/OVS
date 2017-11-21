@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+
+//includes necesary models
 var Election = require('../models/Election');
 var Candidate = require('../models/Candidate');
 var Vote = require('../models/Vote');
@@ -21,7 +23,6 @@ electionController.create = (req, res) =>{
 
 electionController.enroll = (req, res)=>{
   var election= req.params.id;
-  //console.log(election);
 
   //only show candidates not enrolled in election
  Candidate.find({electionId:{'$ne':election}},(err,result)=>{
@@ -58,6 +59,62 @@ electionController.enrollCandidates =(req, res) =>{
    });
 
 
+}
+
+
+electionController.editVoter = (req,res) =>{
+  //show voter credentials to be updated
+  var voter =req.params.id;
+  Voter.findOne({_id:voter},(err,result) =>{
+      if (err) console.log(err);
+        res.render('../views/elections/editVoter', {voter:result});
+  });
+}
+
+
+electionController.updateVoter = (req,res)=>{
+  //find voter and updates to values set by users
+  Voter.findByIdAndUpdate(req.params.id, { $set: { firstName: req.body.fName, lastName : req.body.lName, email : req.body.email, dob : req.body.dob,
+      district : req.body.district,
+      address : req.body.address}},
+    (err) =>{
+      if(err) console.log(err);
+      console.log('Voter Updated');
+      res.redirect('/elections/voters');
+    });
+}
+
+
+electionController.showRegVoter =(req,res) =>{
+    res.render('../views/elections/regVoter.ejs');
+}
+
+electionController.createVoter =(req,res) =>{
+  let voter = new Voter();
+  voter.firstName =  req.body.fName;
+  voter.lastName = req.body.lName;
+  voter.email = req.body.email;
+  voter.dob = req.body.dob;
+  voter.district = req.body.district;
+  voter.address = req.body.address;
+  voter.password = req.body.password;
+
+  //saves to database
+  voter.save(voter, (err, result) => {
+      if (err) {return console.log(err);}
+      else{
+      console.log('Saved to database');
+      res.redirect('/elections/voters');
+      }
+    });
+}
+
+electionController.deleteVoter =(req,res)=>{
+  Voter.findByIdAndRemove(req.body.voter,(err) =>{
+    if(err) console.log(err);
+    console.log('Voter deleted');
+    res.json({success : "Deleted Successfully", status : 200});
+  });
 }
 
 //logs election data and resets it
@@ -131,7 +188,6 @@ electionController.createRound = (req,res) =>{
 electionController.voterList = (req, res) =>{
     Voter.find({},(err, result) => {
      if (err) return console.log(err);
-     console.log(result);
      res.render('../views/elections/votersList', {voters: result});
 });
 }

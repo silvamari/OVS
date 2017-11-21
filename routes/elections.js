@@ -27,6 +27,30 @@ router.get('/voters',(req, res)=>{
     election.voterList(req,res);
 });
 
+router.post('/voters',(req, res)=>{
+  //this route deletes a voter
+    election.deleteVoter(req,res);
+});
+
+router.get('/voters/createVoter',(req, res)=>{
+    election.showRegVoter(req,res);
+});
+
+router.post('/voters/createVoter',(req, res)=>{
+  //this route deletes a voter
+    election.createVoter(req,res);
+});
+
+
+
+router.post('/voters/edit/:id',(req, res)=>{
+    election.updateVoter(req,res);
+});
+
+router.get('/voters/edit/:id',(req, res)=>{
+    election.editVoter(req,res);
+});
+
 router.post('/enroll/:id',(req, res)=>{
   election.enrollCandidates(req, res);
 });
