@@ -86,6 +86,24 @@ $(document).ready(function(){
                      });
           }
         });
+        $(".deleteElection").click(function(){
+          var url = window.location.href + '/deleteElection';
 
+           if(confirm('Are you sure? This will deletes votes and everything else associated with the election.')){
+
+            // $(this).attr('href', url );
+
+            var tempElection = ($(this).attr("value"));
+             $.ajax({
+                      type: "PUT",
+                        url: $(this).data("url"),
+                       dataType:"json",
+                        data: { election: tempElection},
+                        success:function() {
+                            window.location.href='/elections';
+                        }
+                      });
+           }
+         });
 
 });

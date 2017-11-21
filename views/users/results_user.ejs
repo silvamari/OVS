@@ -8,6 +8,9 @@
     <div class="container bodyContainer">
       <div class="col-6 touchdown">
       <h2> Election Results </h2>
+      <%if(elections.length == 0) {%>
+            <h5>Nothing to show</h5>
+        <%}%>
 
     <% for(var i=0; i< elections.length; i++) {%>
           <div class="elections">
@@ -16,7 +19,7 @@
             <span>Date : <%= elections[i].electionDate  %></span><br>
             <div>
 
-              <a href="/users/results/<%= elections[i]._id %>" class="btn btn-primary">See results</a>
+              <a class="btn btn-primary"  href="/users/results/<%= elections[i]._id %>" >See results</a>
 
             </div>
           </div>

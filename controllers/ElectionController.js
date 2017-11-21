@@ -44,6 +44,22 @@ electionController.endElection = (req,res) =>{
  });
 }
 
+electionController.deleteElection =(req, res) =>{
+  Election.findByIdAndRemove(req.body.election,(err) =>{
+    if(err) console.log(err);
+
+
+  //deletes votes associated with the election too
+    Vote.remove({electionId:req.body.election},(err) =>{
+        if(err) console.log(err);
+        console.log("Votes were deleted");
+      });
+
+    console.log('Election deleted');
+    res.json({success : "Deleted Successfully", status : 200});
+  });
+}
+
 
 electionController.enrollCandidates =(req, res) =>{
 

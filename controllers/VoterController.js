@@ -74,7 +74,9 @@ voterController.showRoundTwoResults = (req,res)=>{
    });
 }
 
-
+voterController.showMyAccount= (req,res)=>{
+    res.render('../views/users/myAccount.ejs');
+}
 
 voterController.vote = (req, res) =>{
   var election = req.params.id;

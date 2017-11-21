@@ -10,6 +10,10 @@ router.post('/',(req,res)=>{
     election.endElection(req,res);
 });
 
+router.put('/',(req,res)=>{
+    election.deleteElection(req,res);
+});
+
 
 router.get('/create', (req, res) =>{
   election.create(req,res);

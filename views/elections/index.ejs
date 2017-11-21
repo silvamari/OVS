@@ -28,8 +28,8 @@
             <% } else { %>
               <a href="/users/results/<%=elections[i].id %>" class="btn btn-success">See final results</a>
             <%}%>
-            <button class="btn btn-primary">Delete</button>
-            <button class="btn btn-primary">Update</button>
+
+            <a class="btn btn-primary deleteElection" style="color:#fff" value="<%= elections[i]._id%>"> Delete</a>
 
 
 
