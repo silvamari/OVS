@@ -15,7 +15,7 @@
             }
             var percentage = (vote.candidates[0].votes/totalVotes) * 100;
             var voteMinToRoundTwo = 50;
-          if(vote.round == 1 && vote.candidates.length > 2 && vote.candidates[0].vote < voteMinToRoundTwo) {%>
+          if(vote.round == 1 && vote.candidates[0].vote < voteMinToRoundTwo || vote.candidates.length > 2 ) {%>
             <label><%= vote.candidates[0].name + " and " +  vote.candidates[1].name + " won this round. "  %></label>
             <a class="btn btn-primary"  id="finalRoundResult" >See Final Round Two Result</a>
 
