@@ -24,7 +24,7 @@ router.get('/results/:id/roundTwo',(req,res) =>{
   voter.showRoundTwoResults(req,res);
 });
 
-router.get('/myaccount',(req,res) =>{
+router.get('/myAccount',(req,res) =>{
   voter.showMyAccount(req,res);
 });
 
