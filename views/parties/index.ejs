@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <% include ../partials/head %>
+    <body>
+        <nav class="navbar navbar-inverse bg-inverse">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    Online Voting System | Create Election
+                </a>
+                <a class="navbar-brand" id="user-profile" href="#">Admin</a>
+                <a href="index.html" class="navbar-brand" id="user-profile"> Logout</a>
+
+            </div>
+        </nav>
+
+        <div class="bodyContainer container">
+            <div class="row">
+                <div class="col-6 touchdown">
+                    <form method="post" action="/party/save">
+                        <div class="form-group">
+                            <label for="partyName">Party Name</label>
+                            <input type="text" name="partyName" placeholder="Party Name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="partyID">Party ID</label>
+                                    <input type="text" name="partyID" placeholder="PartyID" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="btn btn-primary" id="createPartyBtn" value="Create Party" type="submit">
+                        <input class="btn btn-primary" id="createPartyBtn" value="Delete Party" type="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% include ../partials/footer %>
+    </body>
+</html>
