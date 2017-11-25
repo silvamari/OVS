@@ -28,6 +28,10 @@ router.get('/myAccount',(req,res) =>{
   voter.showMyAccount(req,res);
 });
 
+router.get('/forget',(req,res) =>{
+    voter.forgetPassword(req,res);
+});
+
 
 router.get('/vote/:id',(req,res)=>{
   voter.vote(req,res);
