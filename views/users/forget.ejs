@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+<body>
+
+<nav class="navbar navbar-inverse bg-inverse">
+    <div class="container">
+        <a class="navbar-brand" href="">
+            Online Voting System | Forgot password
+        </a>
+
+    </div>
+</nav>
+
+<div class="container bodyContainer">
+
+    <div class="row">
+        <div class="col-6 touchdown">
+            <form method="post" action="/users/forget">
+
+
+
+                <div class="form-group">
+                    <label for="Email">Please enter your email to reset your password. </label>
+                    <input type="email" placeholder="Email" name="email" class="form-control" required>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-3">
+                        <input class="btn btn-primary form-control" type="submit" value="Submit"/>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+</body>
