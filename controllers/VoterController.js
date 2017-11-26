@@ -78,12 +78,6 @@ voterController.showMyAccount= (req,res)=>{
     res.render('../views/users/myAccount.ejs');
 }
 
-voterController.forgetPassword= (req,res)=>{
-    res.render('../views/users/forget.ejs');
-}
-
-
-
 voterController.vote = (req, res) =>{
   var election = req.params.id;
 
