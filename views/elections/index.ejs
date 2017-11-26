@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <% include ../partials/head %>
+    </head>
+
+  <body>
+      <% include ../partials/adminHead %>
+    <div class="container bodyContainer">
+      <div class="col-7 touchdown">
+        <a href="/elections/create"><button class="btn btn-success">Create Election</button></a>
+        <a href="/candidates"><button class="btn btn-primary">Candidate Management</button></a>
+        <a href="/elections/voters"><button class="btn btn-primary">Voter Management</button></a>
+        <a href="/parties"><button class="btn btn-primary">Party</button></a>
+
+        <% for(var i=0; i< elections.length; i++) {%>
+        <div class="elections">
+          <h3> <%= elections[i].electionName  %> </h3>
+          <span>Election Status: <%= elections[i].status  %></span><br/>
+          <span>Election Type: <%= elections[i].electionType  %></span><br/>
+          <span>Election Date : <%= elections[i].electionDate  %></span><br/>
+          <% if(elections[i].round>1) {%>
+            <span>Round : <%= elections[i].round  %></span>
+            <%}%>
+          <div>
+            <% if (elections[i].status == 'active') { %>
+            <button type="button" value="<%=elections[i].id %>" class="btn btn-danger endElection">End Election</button>
+            <a class="btn btn-primary" href="/elections/enroll/<%= elections[i]._id %>">Enroll Candidates</a>
+            <% } else { %>
+              <a href="/users/results/<%=elections[i].id %>" class="btn btn-success">See final results</a>
+            <%}%>
+
+            <a class="btn btn-primary deleteElection" style="color:#fff" value="<%= elections[i]._id%>"> Delete</a>
+
+
+
+          </div>
+        </div>
+         <% } %>
+      </div>
+    </div>
+    <% include ../partials/footer %>
+  </body>
+</html>
