@@ -72,6 +72,21 @@ $(document).ready(function(){
             }
        });
 
+    $(".deleteParty").click(function(){
+        if(confirm('Are you sure?')){
+            var prty = ($(this).attr("value"));
+            $.ajax({
+                type: "POST",
+                url: $(this).data("url"),
+                dataType:"json",
+                data: { party: prty},
+                success:function() {
+                    window.location.href='/parties';
+                }
+            });
+        }
+    });
+
        $(".deleteVoter").click(function(){
           if(confirm('Are you sure?')){
              var tempVoter = ($(this).attr("value"));

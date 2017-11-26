@@ -7,10 +7,11 @@
   <body>
       <% include ../partials/adminHead %>
     <div class="container bodyContainer">
-      <div class="col-7 touchdown">
+      <div class="col-10 touchdown">
         <a href="/elections/create"><button class="btn btn-success">Create Election</button></a>
         <a href="/candidates"><button class="btn btn-primary">Candidate Management</button></a>
         <a href="/elections/voters"><button class="btn btn-primary">Voter Management</button></a>
+        <a href="/parties"><button class="btn btn-primary">Party Management</button></a>
 
         <% for(var i=0; i< elections.length; i++) {%>
         <div class="elections">

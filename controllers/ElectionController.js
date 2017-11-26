@@ -221,7 +221,9 @@ electionController.save = (req, res) =>{
         election.electionDate = req.body.electionDate;
         election.electionType = req.body.electionType;
 
-        //saves to database
+
+
+    //saves to database
         election.save((err, result) => {
             if (err) {return console.log(err);}
             else{

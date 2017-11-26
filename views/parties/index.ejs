@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+<% include ../partials/adminHead %>
+<div class="container bodyContainer">
+    <a href="/parties/create" class="btn btn-success"> Create Party </a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Party Name</th>
+            <th>Address</th>
+            <th>Website</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%  for( var i= 0; i< party.length; i++){ %>
+        <tr>
+
+            <td><%= party[i].name%></td>
+            <td><%= party[i].address%></td>
+            <td><%= party[i].website%></td>
+            <td><a class="btn btn-primary" href="/parties/edit/<%= party[i].id%>">Edit</a></td>
+            <td><button class="btn btn-danger deleteParty"  value="<%= party[i].id%>">Delete</button></td>
+        </tr>
+        <% } %>
+
+        </tbody>
+    </table>
+</div>
+<% include ../partials/footer %>
+</body>
+</html>
