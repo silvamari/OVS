@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var Party = require('../models/Party');
+var Election = require('../models/Election');
 
 var PartyController ={};
 
@@ -61,7 +62,16 @@ PartyController.save = (req, res) =>{
 }
 
 
+PartyController.partyAccount= (req,res)=>{
+    res.render('../views/parties/pAccount.ejs');
+}
 
+PartyController.futureElections= (req,res)=>{
+    res.render('../views/parties/fElections.ejs');
+}
 
+PartyController.parElections= (req,res)=>{
+    res.render('../views/parties/parliamentElections.ejs');
+}
 
 module.exports = PartyController;
