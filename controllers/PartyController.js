@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 var Party = require('../models/Party');
 var Election = require('../models/Election');
+var Candidate = require('../models/Candidate');
+var Request = require('../models/Request');
 
 var PartyController ={};
 
@@ -66,12 +68,79 @@ PartyController.partyAccount= (req,res)=>{
     res.render('../views/parties/pAccount.ejs');
 }
 
-PartyController.futureElections= (req,res)=>{
-    res.render('../views/parties/fElections.ejs');
+PartyController.nominate = (req,res)=>{
+    res.render('../views/parties/nominate.ejs');
 }
 
-PartyController.parElections= (req,res)=>{
-    res.render('../views/parties/parliamentElections.ejs');
+PartyController.nomPresidential = (req, res) =>{
+  Election.find({electionType:"Presidential", status: "active"},(err,result)=>{
+     if(err) return console.log(err);
+     console.log(result);
+    res.render('../views/parties/nominatePresidential', {elections:result});
+  });
 }
+
+PartyController.nomParlimentary = (req, res) =>{
+  Election.find({electionType:"Parliamentary", status: "active"},(err,result)=>{
+     if(err) return console.log(err);
+     console.log(result);
+    res.render('../views/parties/nominateParliamentary', {elections:result});
+  });
+}
+
+PartyController.showCandidatesToNominate = (req, res) =>{
+    Party.find((err,result)=>{
+       if(err) return console.log(err);
+       res.render('../views/parties/nominateCand', {parties:result});
+    });
+}
+
+PartyController.myCands = (req, res) =>{
+  //had to do this to find out which party since login is not a priority and I need to get a specific list of candidates
+       Party.find({},(err,result)=>{
+         if (err) {
+           console.log(err);
+         }
+         res.render('../views/parties/myCandidates',{parties : result});
+       });
+}
+
+PartyController.showPartyCands = (req, res) =>{
+  //find actual candidates that are a part of that party now
+       Candidate.find({ party: req.body.party },(err,result)=>{
+         if (err) {
+           console.log(err);
+         }
+         console.log(result);
+        res.json({success : "Candidates fetched", status : 200, candidates : result});
+       });
+}
+
+PartyController.showPartyCandsPresOnly = (req, res) =>{
+  //find actual candidates that are a part of that party now
+       Candidate.find({ party: req.body.party, type :"Presidential" },(err,result)=>{
+         if (err) {
+           console.log(err);
+         }
+         console.log(result);
+        res.json({success : "Candidates fetched", status : 200, candidates : result});
+       });
+}
+
+PartyController.sendNomRequest =(req,res) =>{
+      var nom = new Request();
+
+      nom.comments = "Nomination";
+      nom.electionId = req.params.id;
+      nom.candidateId = req.body.candidate;
+
+      nom.save((err)=>{
+          if(err) console.log(err);
+            res.json({success : "Sucessfully nominated", status : 200});
+      });
+
+}
+
+
 
 module.exports = PartyController;

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/partyHead %>
+    <div class="container bodyContainer">
+      <div class="col-6 touchdown">
+
+    <% if(elections.length <= 0 ){ %>
+          <h3>No elections</h3>
+    <% } %>
+    <% for(var i=0; i< elections.length; i++) {%>
+          <div class="elections">
+            <h3> <%= elections[i].electionName  %> </h3>
+            <span>Election Type: <%= elections[i].electionType  %></span><br>
+            <span>Date : <%= elections[i].electionDate  %></span><br>
+
+            <div>
+
+              <a href="/parties/nominate/Presidential/<%= elections[i]._id %>" class="btn btn-primary">Nominate Candidates</a>
+
+            </div>
+          </div>
+      <% } %>
+    </div>
+  </div>
+      <% include ../partials/footer %>
+  </body>
+
+</html>

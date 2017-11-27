@@ -121,4 +121,81 @@ $(document).ready(function(){
            }
          });
 
+
+         $("#whichPartySelect").change(function(){
+            //with each selectio it grabs the selected party and disaply the candidates that are a part of that party
+              var party = ($(this)).find(":selected").text();
+
+              $.ajax({
+                       type: "POST",
+                         url: $(this).data("url"),
+                        dataType:"json",
+                         data: { party: party},
+                         success:function(candidates) {
+                           var trHTML = '';
+                                 if(candidates.candidates.length <=0 ){
+                                   trHTML = "No Candidates";
+                                 }
+                                 else {
+                                   $.each(candidates.candidates, function (i, item) {
+
+                                       trHTML += '<tr><td>' + item.name + '</td><td>' + item.address + '</td><td>'+ item.type + '</td></tr>';
+
+                                   });
+                                 }
+
+                                $('#showCandForParty').html(trHTML);
+                         }
+                       });
+
+         });
+
+
+         $("#whichPartySelectPres").change(function(){
+            //with each selectio it grabs the selected party and disaply the candidates that are a part of that party
+              var party = ($(this)).find(":selected").text();
+
+              $.ajax({
+                       type: "POST",
+                         url: $(this).data("url"),
+                        dataType:"json",
+                         data: { party: party},
+                         success:function(candidates) {
+                           var trHTML = '';
+                                 if(candidates.candidates.length <=0 ){
+                                   trHTML = "No Candidates";
+                                 }
+                                 else {
+                                      trHTML ='<tr><td>'+'Candidate Name'+'</td><td>'+'Address'+'</td><td>'+'Type'+'</td></tr>';
+                                   $.each(candidates.candidates, function (i, item) {
+
+                                       trHTML += '<tr><td>' + item.name + '</td><td>' + item.address + '</td><td>'+ item.type + '</td><td>' + '<button value ='+item._id+' class=\"btn btn-primary nominateCandidatePresBtn \" >Nominate </button>' + '</td></tr>';
+
+                                   });
+                                 }
+
+                                $('#showCandForParty').html(trHTML);
+                         }
+                       });
+
+         });
+
+         $('#showCandForParty').on('click','.nominateCandidatePresBtn',function(){
+           var cand = ($(this).attr("value"));
+            $.ajax({
+                     type: "PUT",
+                       url: $(this).data("url"),
+                      dataType:"json",
+                       data: { candidate: cand },
+                       success:function() {
+                          alert('Nominated');
+                          window.location.href='/parties/pAccount';
+                       }
+                     });
+
+
+
+
+        });
+
 });

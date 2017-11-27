@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var Candidate = require('../models/Candidate');
+var Party = require('../models/Party');
 
 var candidateController ={};
 
@@ -12,7 +13,11 @@ candidateController.list = (req, res) =>{
 }
 
 candidateController.create = (req, res)=>{
-  res.render('../views/candidates/createCandidate');
+  Party.find({},(err, result)=>{
+    if(err) console.log(err);
+    console.log(result);
+      res.render('../views/candidates/createCandidate',{ parties : result});
+  });
 }
 
 candidateController.edit = (req, res) =>{
