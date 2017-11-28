@@ -95,6 +95,19 @@ PartyController.showCandidatesToNominate = (req, res) =>{
     });
 }
 
+PartyController.showDistricts = (req, res) =>{
+    Election.findOne({electionType:'Parliamentary', _id: req.params.id},(err,result)=>{
+       if(err) return console.log(err);
+       console.log(result.districts);
+       Party.find((err,party)=>{
+         if (err) console.log(err);
+         console.log(result.districts);
+           res.render('../views/parties/nominateCandParliment', {districts:result.districts, parties: party});
+       });
+    });
+}
+
+
 PartyController.myCands = (req, res) =>{
   //had to do this to find out which party since login is not a priority and I need to get a specific list of candidates
        Party.find({},(err,result)=>{
@@ -118,7 +131,18 @@ PartyController.showPartyCands = (req, res) =>{
 
 PartyController.showPartyCandsPresOnly = (req, res) =>{
   //find actual candidates that are a part of that party now
-       Candidate.find({ party: req.body.party, type :"Presidential" },(err,result)=>{
+       Candidate.find({ party: req.body.party, type :"Presidential", approval_status:"not approved" },(err,result)=>{
+         if (err) {
+           console.log(err);
+         }
+         console.log(result);
+        res.json({success : "Candidates fetched", status : 200, candidates : result});
+       });
+}
+
+PartyController.showPartyCandsParliOnly = (req, res) =>{
+  //find actual candidates that are a part of that party now who are Parliment
+       Candidate.find({ party: req.body.party, type :"Parliamentary", approval_status:"not approved" },(err,result)=>{
          if (err) {
            console.log(err);
          }
@@ -128,16 +152,24 @@ PartyController.showPartyCandsPresOnly = (req, res) =>{
 }
 
 PartyController.sendNomRequest =(req,res) =>{
-      var nom = new Request();
+    //only show candidates not enrolled in election
+    var district = req.body.district;
+      var election= req.params.id;
+    if(district == '' || district === undefined){
 
-      nom.comments = "Nomination";
-      nom.electionId = req.params.id;
-      nom.candidateId = req.body.candidate;
+      Candidate.findOneAndUpdate({_id:req.body.candidate},{electionId:election},(err,result)=>{
+         if(err) return console.log(err);
+        res.json({success : "Sucessfully nominated", status : 200});
+       });
 
-      nom.save((err)=>{
-          if(err) console.log(err);
-            res.json({success : "Sucessfully nominated", status : 200});
-      });
+    }
+    else {
+      Candidate.findOneAndUpdate({_id:req.body.candidate},{electionId:election, district : district},(err,result)=>{
+         if(err) return console.log(err);
+        res.json({success : "Sucessfully nominated", status : 200});
+       });
+
+      }
 
 }
 

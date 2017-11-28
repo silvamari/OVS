@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+
+  <body>
+    <% include ../partials/nav %>
+    <div class="bodyContainer container">
+
+        <div class="row">
+          <div class="col-4">
+            <h3>Select District</h3>
+            <div id="district-section">
+                          <% for(var i =0; i< districts.length; i++) { %>
+                              <div class="form-control districtBox" value ="<%= districts[i].name %>">
+                                <label class="votingLabel">
+                                  <%= districts[i].name %>
+                                </label>
+                              </div>
+                              <% } %>
+
+
+                      </div>
+                </div>
+              <div id="vote-section-district" class="col-8">
+              </div>
+
+
+              </div>
+
+
+
+  </body>
+    </div>
+  <% include ../partials/footer %>
+</html>

@@ -12,6 +12,7 @@
           <thead>
             <tr>
               <th>Candidate</th>
+              <th>Candidate Type</th>
               <th>Address</th>
               <th>Party</th>
             </tr>
@@ -21,6 +22,7 @@
             <tr>
 
                 <td><%= candidates[i].name%></td>
+                <td><%= candidates[i].type%></td>
                 <td><%= candidates[i].address%></td>
                 <td><%= candidates[i].party%></td>
                 <td><a class="btn btn-primary" href="/candidates/edit/<%= candidates[i].id%>">Edit</a></td>

@@ -25,10 +25,11 @@ electionController.enroll = (req, res)=>{
   var election= req.params.id;
 
   //only show candidates not enrolled in election
- Candidate.find({electionId:{'$ne':election}},(err,result)=>{
+ Candidate.find({electionId:election, approval_status:"not approved"},(err,result)=>{
     if(err) return console.log(err);
     res.render('../views/elections/showCandList', {candidates:result});
   });
+
 
 }
 
@@ -68,7 +69,7 @@ electionController.enrollCandidates =(req, res) =>{
 
     Candidate.findOneAndUpdate(
    {_id: candidate},
-   {electionId: election},(err)=>{
+   {approval_status: "approved"},(err)=>{
       if(err) console.log(err);
       console.log('Enrolled');
       res.json({success : "Updated Successfully", status : 200});
@@ -209,28 +210,33 @@ electionController.voterList = (req, res) =>{
 }
 
 electionController.save = (req, res) =>{
+  //check for appropriate election type and save accordingly
+  var tempDistrict = req.body.districts;
+  let election = new Election();
+      var districts =[];
+        if(req.body.electionType == 'Parliamentary'){
+          console.log('I came in here');
+          for (var i = 0; i < tempDistrict.length; i++) {
+              districts.push({name:tempDistrict[i]});
 
-        var tempCandName = req.body.candidate;
-        var tempCandParty = req.body.candidate_party;
-        var candidates =[];
+          }
+          election.districts = districts;
+          console.log(districts);
+        }
+          election.electionName =  req.body.electionName;
+          election.electionDate = req.body.electionDate;
+          election.electionType = req.body.electionType;
+
+      //saves to database
+          election.save((err, result) => {
+              if (err) {return console.log(err);}
+              else{
+              console.log('Saved to database');
+              res.redirect('/elections');
+              }
+            });
 
 
-        //fetch form fields
-        let election = new Election();
-        election.electionName =  req.body.electionName;
-        election.electionDate = req.body.electionDate;
-        election.electionType = req.body.electionType;
-
-
-
-    //saves to database
-        election.save((err, result) => {
-            if (err) {return console.log(err);}
-            else{
-            console.log('Saved to database');
-            res.redirect('/elections');
-            }
-          });
 
 }
 

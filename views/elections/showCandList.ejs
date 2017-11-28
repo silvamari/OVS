@@ -7,22 +7,27 @@
     <% include ../partials/adminHead %>
     <div class="bodyContainer container">
 
-    <h3>Which candidate would you like to enroll in this election?</h3>
+    <h3> Nomination List </h3>
+    <% if(candidates.length <= 0){ %>
+          <h5>No pending nominations!</h5>
+    <%}else {%>
+
     <table class="table">
           <tr>
               <td>Candidate</td>
               <td>Party</td>
           </tr>
-        <%  for( var i= 0; i< candidates.length; i++){ %>
+          <%  for( var i= 0; i< candidates.length; i++){ %>
 
                 <tr>
                   <td><%= candidates[i].name%></td>
                   <td><%=candidates[i].party%></td>
-                  <td> <button type="button" name="enrollBtn"  value="<%=candidates[i].id%>" class="btn btn-primary enrollBtn">Enroll <%= " " + candidates[i].name%></button></td>
+                  <td> <button type="button" name="enrollBtn"  value="<%=candidates[i].id%>" class="btn btn-primary enrollBtn">Approve <%= " " + candidates[i].name%></button></td>
                 </tr>
 
           <% } %>
-            </table>
+        </table>
+        <% } %>
 
       </div>
       <% include ../partials/footer %>

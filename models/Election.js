@@ -25,7 +25,10 @@ let electionSchema = mongoose.Schema({
   },
   status:{
     type:String, default:'active'
-  }
+  },
+  districts:[{
+    name: {type :String},
+    }]
 });
 
 module.exports = mongoose.model('Election',electionSchema);

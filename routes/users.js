@@ -37,6 +37,15 @@ router.get('/vote/:id',(req,res)=>{
   voter.vote(req,res);
 });
 
+router.get('/vote/district/:id',(req,res)=>{
+  voter.showDistricts(req,res);
+});
+
+router.post('/vote/district/:id',(req,res)=>{
+  voter.showParliVoters(req,res);
+});
+
+
 router.get('/registerVoter',(req,res)=>{
   voter.register(req,res);
 });

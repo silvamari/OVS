@@ -173,3 +173,24 @@ footer{
 #round-Box button{
 	float: right;
 }
+#districtElection{
+	display: none;
+}
+.districtInputs{
+	margin-top: 5px;
+}
+
+.districtBox{
+	width:120px;
+	height:120px;
+	border-radius: 30px;
+	float:left;
+	padding:10px;
+	margin:20px;
+	background-image: url('../images/district.svg');
+	background-size: 120px 120px;
+	 background-repeat: no-repeat;
+
+}
+#vote-section-district{
+}

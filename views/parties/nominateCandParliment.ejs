@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+       <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/partyHead %>
+    <div class="container bodyContainer">
+      <h4>Which party are you?</h4>
+      <div class="col-5">
+        <div class="form-group">
+            <label for="cAddress">Party</label>
+                 <select class="form-control" name="party" id="whichPartySelectParli" required>
+                   <option value="selected">Select Party</option>
+                  <% for(var i = 0; i< parties.length; i++) { %>
+                  <option><%= parties[i].name %></option>
+                  <% } %>
+                </select>
+        </div>
+      </div>
+      <h4>Which District?</h4>
+      <div class="col-5">
+        <div class="form-group">
+                 <select class="form-control" name="party" id="whichDistrictSelect" required>
+                   <option value="selected">Which District</option>
+                  <% for(var i = 0; i< districts.length; i++) { %>
+                  <option><%= districts[i].name %></option>
+                  <% } %>
+                </select>
+
+        </div>
+      </div>
+        <table id="showCandForParty" class="table">
+
+
+
+
+        </table>
+  </div>
+  <% include ../partials/footer %>
+  </body>
+</html>

@@ -10,7 +10,8 @@
       <h2> Ongoing elections </h2>
 
 
-    <% for(var i=0; i< elections.length; i++) {%>
+    <% for(var i=0; i< elections.length; i++) { %>
+
           <div class="elections">
             <h3> <%= elections[i].electionName  %> </h3>
             <span>Election Type: <%= elections[i].electionType  %></span><br>
@@ -19,8 +20,11 @@
                 <span>Round : <%= elections[i].round  %></span>
                 <%}%>
             <div>
-
+          <% if( elections[i].electionType == 'Presidential') { %>
               <a href="/users/vote/<%= elections[i]._id %>" class="btn btn-primary">Vote in this election</a>
+          <% }else{ %>
+              <a href="/users/vote/district/<%= elections[i]._id %>" class="btn btn-primary">Select District and Vote</a>
+            <% } %>
 
             </div>
           </div>

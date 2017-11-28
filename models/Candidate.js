@@ -8,6 +8,8 @@ var candidateSchema = new Schema({
     address: {type : String},
     party: {type : String},
     votes: {type: Number, default:0},
+    approval_status :{type:String, default :'not approved'},
+    district :{ type: String, default:''},
     electionId:{ type :String, default: ''}
 })
 

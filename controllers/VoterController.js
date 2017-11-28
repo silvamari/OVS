@@ -59,7 +59,6 @@ voterController.showElectionResults = (req,res)=>{
   var election = req.params.id;
   Vote.findOne({ $and :[ {electionId: election}, {round : 1} ] }, (err, result)=>{
     if(err) console.log(err);
-    console.log(result.round);
     res.render('../views/users/results_user_listing.ejs',{vote:result});
 
    });
@@ -88,10 +87,29 @@ voterController.vote = (req, res) =>{
   var election = req.params.id;
 
   //Show only candidates that are being enrolled in the election
- Candidate.find({electionId:election},(err,result)=>{
+ Candidate.find({electionId:election, approval_status : 'approved'},(err,result)=>{
     if(err) return console.log(err);
       res.render('../views/users/vote', {candidates:result});
     });
+}
+
+voterController.showParliVoters = (req, res) =>{
+  var election = req.params.id;
+  //Show only candidates that are being enrolled in the election
+ Candidate.find({electionId:election, approval_status : 'approved', district:req.body.district},(err,result)=>{
+    if(err) return console.log(err);
+        res.json({success : "Candidates found for this district", status : 200, candidates:result});
+    });
+}
+
+voterController.showDistricts =(req, res) =>{
+  Election.findOne({_id:req.params.id},(err,result)=>{
+        if (err) {
+          console.log(err);
+        }
+        console.log(result);
+        res.render('../views/users/districts', {districts:result.districts});
+  });
 }
 
 voterController.submitVote = (req,res) =>{

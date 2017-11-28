@@ -16,6 +16,17 @@ router.get('/nominate/Parlimentary',(req,res) =>{
     prty.nomParlimentary(req,res);
 });
 
+router.get('/nominate/Parliamentary/:id',(req,res) =>{
+    prty.showDistricts(req,res);
+});
+
+router.post('/nominate/Parliamentary/:id',(req,res)=>{
+    prty.showPartyCandsParliOnly(req,res);
+});
+router.put('/nominate/Parliamentary/:id',(req,res)=>{
+    prty.sendNomRequest(req,res);
+});
+
 router.get('/nominate/Presidential',(req,res) =>{
     prty.nomPresidential(req,res);
 });

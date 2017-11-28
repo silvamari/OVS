@@ -23,9 +23,6 @@ router.post('/save', (req, res) =>{
   election.save(req,res);
 });
 
-router.get('/enroll/:id',(req, res)=>{
-    election.enroll(req,res);
-});
 
 router.get('/voters',(req, res)=>{
     election.voterList(req,res);
@@ -45,14 +42,16 @@ router.post('/voters/createVoter',(req, res)=>{
     election.createVoter(req,res);
 });
 
-
-
 router.post('/voters/edit/:id',(req, res)=>{
     election.updateVoter(req,res);
 });
 
 router.get('/voters/edit/:id',(req, res)=>{
     election.editVoter(req,res);
+});
+
+router.get('/enroll/:id',(req, res)=>{
+    election.enroll(req,res);
 });
 
 router.post('/enroll/:id',(req, res)=>{
