@@ -24,24 +24,26 @@ This application requires nodeJS and all the other dependencies.
 
 ## Running the tests
 
-Check localhost:/3342 or sc-12.cs.mun.ca if deployed via Excalibur
-NB. General logic in elections
- Ensure that candidates are nominated before we will see them in the
+*Check **localhost:/3342** or **sc-12.cs.mun.ca** if deployed via **Excalibur**
+
+*NB. General logic in elections
+* Ensure that candidates are nominated before we will see them in the
 voter section.
- This nomination will be done via party login.
- In turn, the election manager must now approve these candidates by
+* This nomination will be done via party login.
+* In turn, the election manager must now approve these candidates by
 going into the elections and select nominations.
- Do not end election if nothing is done with the election.
+* Do not end election if nothing is done with the election.
 
 ## Versioning
 
 https://github.com/silvamari/OVS/
 
 ## Authors
-Group 1 
-Demarey Baker 
-Hanieh Marvi khorasani 
-Keyvan Derakhshan Nik 
+
+* **Group 1** 
+*Demarey Baker 
+*Hanieh Marvi khorasani 
+*Keyvan Derakhshan Nik 
 
 
 
