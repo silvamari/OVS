@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var Election = require('../models/Election');
 var Candidate = require('../models/Candidate');
 var Vote = require('../models/Vote');
+var DistrictVote = require('../models/DistrictVote');
 var Voter = require('../models/Voter');
 
 var electionController ={};
@@ -177,6 +178,56 @@ electionController.calResults = (req,res)=>{
 
 
 }
+
+//logs election data and resets it
+electionController.calParliResults = (req,res)=>{
+    //election id
+    var election = req.params.id;
+
+      Election.findOne({_id: election},(err, findElection)=>{
+
+
+          for(var x = 0; x < findElection.districts.length; x++){
+
+                let votes = new DistrictVote();
+                votes.districtName = findElection.districts[x].name;
+                //election id
+                votes.electionId =  election;
+
+                Candidate.find({electionId: election, district : findElection.districts[x].name})
+                .sort({votes: -1})
+                .exec((err, result)=>{
+
+                  if(err) console.log(err);
+
+                  var candidates =[];
+                  //console.log(result[]);
+                  votes.electionId =  req.params.id;
+                    for(var i=0; i< result.length; i++ ){
+                      candidates.push({name:result[i].name, party : result[i].party, votes : result[i].votes});
+                    }
+
+                  votes.candidates = candidates;
+
+                  votes.save((err) => {
+                   if(err) console.log(err);
+                   console.log('Election votes were logged!');
+                  });
+               });
+
+
+      }
+      //remember to uncomment
+      //resets candidate values
+      Candidate.updateMany({electionId: election},{ $set: { "votes" : 0, "electionId" : '', district : '', approval_status :'not approved' } },(err)=>{
+       if (err) console.log(err);
+        console.log('Candidates value resetted!');
+      });
+      res.redirect('/elections/');
+   });
+
+}
+
 
 
 electionController.createRound = (req,res) =>{

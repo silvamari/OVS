@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+    <div class="bodyContainer container">
+          <div class="row">
+
+                  <div class="col-12">
+
+
+                      <h3>Results </h3>
+                        <% for(var i =0; i< vote.length; i++) {%>
+                          <div class="district_display">
+                                <h5><%= vote[i].districtName %></h5>
+                                <table class="table">
+                                  <tr>
+                                    <td>Candidate Name</td>
+                                    <td>Party</td>
+                                    <td>Votes</td>
+                                  </tr>
+                                  <% for(var x = 0; x < vote[i].candidates.length; x++) {%>
+                                  <tr>
+                                      <td><%= vote[i].candidates[x].name %></td>
+                                      <td><%= vote[i].candidates[x].party %></td>
+                                      <td><%= vote[i].candidates[x].votes %></td>
+                                  </tr>
+                                  <%}%>
+
+                                </table>
+
+
+                          </div>
+                          <%}%>
+
+                  </div>
+          </div>
+    </div>
+      <% include ../partials/footer %>
+  </body>
+
+
+</html>

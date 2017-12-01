@@ -20,6 +20,11 @@ router.get('/results/:id',(req,res)=>{
     voter.showElectionResults(req,res);
 });
 
+router.get('/parli_results/:id',(req,res)=>{
+    voter.showElectionParliResults(req,res);
+});
+
+
 router.get('/results/:id/roundTwo',(req,res) =>{
   voter.showRoundTwoResults(req,res);
 });

@@ -24,11 +24,17 @@
             <%}%>
           <div>
             <% if (elections[i].status == 'active') { %>
-            <button type="button" value="<%=elections[i].id %>" class="btn btn-danger endElection">End Election</button>
+                <% if (elections[i].electionType == 'Presidential') {%>
+                    <button type="button" value="<%=elections[i].id %>" class="btn btn-danger endElection">End Election</button>
+                <%} else {%>
+                    <button type="button" value="<%=elections[i].id %>" class="btn btn-danger endParlimentElection">End Election</button>
+                  <%}%>
             <a class="btn btn-primary" href="/elections/enroll/<%= elections[i]._id %>">Nominations</a>
-            <% } else { %>
+            <% } else { if (elections[i].electionType == 'Presidential' ) {%>
               <a href="/users/results/<%=elections[i].id %>" class="btn btn-success">See final results</a>
-            <%}%>
+            <%}else{ %>
+              <a href="/users/parli_results/<%=elections[i].id %>" class="btn btn-success">See final results</a>
+            <%}}%>
 
             <a class="btn btn-primary deleteElection" style="color:#fff" value="<%= elections[i]._id%>"> Delete</a>
 

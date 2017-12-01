@@ -4,6 +4,7 @@ var Voter = require('../models/Voter');
 var Election = require('../models/Election');
 var Candidate = require('../models/Candidate');
 var Vote = require('../models/Vote');
+var DistrictVote = require('../models/DistrictVote');
 
 var voterController ={};
 
@@ -63,6 +64,20 @@ voterController.showElectionResults = (req,res)=>{
 
    });
 }
+
+voterController.showElectionParliResults = (req,res)=>{
+  //election id
+  var election = req.params.id;
+  DistrictVote.find({electionId: election}, (err, result)=>{
+    if(err) console.log(err);
+    console.log(result);
+    res.render('../views/users/results_parli.ejs',{vote:result});
+
+   });
+}
+
+
+
 voterController.showRoundTwoResults = (req,res)=>{
   //election id
   var election = req.params.id;

@@ -10,7 +10,7 @@ $(document).ready(function(){
  								        data: { CandidateId: cand},
  								        success:function() {
                             alert('Enrolled');
-                            window.location.href='/elections';
+                            location.reload();
  								        }
  								  	  });
 
@@ -33,6 +33,22 @@ $(document).ready(function(){
 
 
     });
+
+    $(".endParlimentElection").click(function(){
+      var elect = ($(this).attr("value"));
+      $.ajax({
+                 type: "POST",
+                 url: $(this).data("url"),
+                 dataType:"json",
+                 data: { endElectId: elect},
+                 success:function() {
+                     alert('Election has ended!');
+                     window.location.href='/elections/calParliResults/'+elect;
+                 }
+               });
+
+    });
+
 
     $("#nextRound").click(function(){
        var tempcandidates =  new Array();

@@ -62,6 +62,10 @@ router.get('/calResults/:id', (req, res)=>{
   election.calResults(req,res);
 });
 
+router.get('/calParliResults/:id', (req, res)=>{
+  election.calParliResults(req,res);
+});
+
 router.post('/calResults/:id',(req,res)=>{
   election.createRound(req,res);
 });

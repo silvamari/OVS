@@ -19,8 +19,11 @@
             <span>Date : <%= elections[i].electionDate  %></span><br>
             <div>
 
+              <% if(elections[i].electionType =='Presidential') {%>
               <a class="btn btn-primary"  href="/users/results/<%= elections[i]._id %>" >See results</a>
-
+              <%} else {%>
+              <a href="/users/parli_results/<%=elections[i].id %>" class="btn btn-primary">See results</a>
+              <% } %>
             </div>
           </div>
       <% } %>
