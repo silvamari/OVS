@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var cand = require("../controllers/candidateController.js");
+var cand = require("../controllers/CandidateController.js");
 
 router.get('/',(req,res)=>{
     cand.list(req,res);
