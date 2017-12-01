@@ -131,7 +131,7 @@ PartyController.showPartyCands = (req, res) =>{
 
 PartyController.showPartyCandsPresOnly = (req, res) =>{
   //find actual candidates that are a part of that party now
-       Candidate.find({ party: req.body.party, type :"Presidential", approval_status:"not approved" },(err,result)=>{
+       Candidate.find({ party: req.body.party, type :"Presidential" },(err,result)=>{
          if (err) {
            console.log(err);
          }
@@ -142,7 +142,7 @@ PartyController.showPartyCandsPresOnly = (req, res) =>{
 
 PartyController.showPartyCandsParliOnly = (req, res) =>{
   //find actual candidates that are a part of that party now who are Parliment
-       Candidate.find({ party: req.body.party, type :"Parliamentary", approval_status:"not approved" },(err,result)=>{
+       Candidate.find({ party: req.body.party, type :"Parliamentary"},(err,result)=>{
          if (err) {
            console.log(err);
          }
