@@ -12,6 +12,7 @@
 
 
                       <h3>Results </h3>
+                      <h5>This election as <%=vote.length%> seats</h5>
                         <% for(var i =0; i< vote.length; i++) {%>
                           <div class="district_display">
                                 <h5><%= vote[i].districtName %></h5>
@@ -21,14 +22,18 @@
                                     <td>Party</td>
                                     <td>Votes</td>
                                   </tr>
-                                  <% for(var x = 0; x < vote[i].candidates.length; x++) {%>
+                                  <% for(var x = 0; x < vote[i].candidates.length; x++)  {%>
                                   <tr>
                                       <td><%= vote[i].candidates[x].name %></td>
                                       <td><%= vote[i].candidates[x].party %></td>
                                       <td><%= vote[i].candidates[x].votes %></td>
                                   </tr>
-                                  <%}%>
 
+
+                                  <%}%>
+                                  <tr>
+                                    <td><%= vote[i].candidates[0].party %> (<%= vote[i].candidates[0].name %>) won this seat</td>
+                                  </tr>
                                 </table>
 
 
