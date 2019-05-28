@@ -19,7 +19,7 @@ This application requires nodeJS and all the other dependencies.
 
 1. git clone https://github.com/silvamari/OVS/
 2. npm install
-3. npm install bower –g
+3. npm install -g bower
 4. bower install bootstrap#v4.0.0-alpha.6
 
 ## Running the tests
